@@ -2,12 +2,13 @@ package main
 
 import ui "github.com/gizak/termui"
 
-func quitMenu() (u *ui.Par, ga *ui.Gauge) {
+//QuitMenu Closes the app
+func QuitMenu() (u *ui.Par, ga *ui.Gauge) {
 	p := ui.NewPar(":Press q to Quit")
 	p.Height = 3
 	p.Width = 50
 	p.TextFgColor = ui.ColorWhite
-	p.BorderLabel = "Text Box"
+	p.BorderLabel = "Latest Commit"
 	p.BorderFg = ui.ColorCyan
 
 	g := ui.NewGauge()
@@ -22,12 +23,12 @@ func quitMenu() (u *ui.Par, ga *ui.Gauge) {
 
 }
 
-func showGitOutput(s string) (u *ui.Par) {
+// ShowGitOutput renders output of a Git command
+func ShowGitOutput(s string) (u *ui.Par) {
 	p := ui.NewPar(s)
-	p.Height = 3
+	p.Height = 10
 	p.Width = 50
 	p.TextFgColor = ui.ColorWhite
-	p.BorderLabel = "Text Box"
 	p.BorderFg = ui.ColorCyan
 
 	return p

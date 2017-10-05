@@ -25,7 +25,7 @@ func gitCommand() (out string) {
 	sha := string(cmdOut)
 	firstSix := sha[:6]
 	fmt.Println("The first six chas of the SHA at HEAD in this repo are", firstSix)
-	return "The first six chas of the SHA at HEAD in this repo are" + firstSix
+	return "The first six characterss of the SHA at HEAD in this repo are " + firstSix
 }
 
 func quit(ui.Event) {
@@ -39,11 +39,17 @@ func main() {
 	}
 	defer ui.Close()
 
-	p, g := quitMenu()
+	p, g := QuitMenu()
 	output := gitCommand()
-	git := showGitOutput(output)
+	git := ShowGitOutput(output)
 	ui.Render(p, g, git)
 	ui.Loop()
 	// Handle q to quit
-	ui.Handle("/sys/kbd/q", quit)
+	ui.Handle("/sys/kbd/q", func(ui.Event) {
+		ui.StopLoop()
+	})
+	ui.Handle("/sys/kbd/C-x", func(ui.Event) {
+		// handle Ctrl + x combination
+		ui.StopLoop()
+	})
 }
